@@ -12,7 +12,10 @@ const registerSchema = z.object({
 export async function POST(req: Request) {
     try {
         const body = await req.json()
+        console.log("[Register] Received body:", JSON.stringify(body))
+
         const { username, email, password } = registerSchema.parse(body)
+        console.log("[Register] Validated:", { username, email })
 
         const existingUser = await prisma.user.findFirst({
             where: {
@@ -24,6 +27,7 @@ export async function POST(req: Request) {
         })
 
         if (existingUser) {
+            console.log("[Register] User already exists:", existingUser.email, existingUser.username)
             return NextResponse.json({ error: "User already exists" }, { status: 400 })
         }
 
@@ -37,8 +41,10 @@ export async function POST(req: Request) {
             }
         })
 
+        console.log("[Register] Created user:", user.id)
         return NextResponse.json({ user: { id: user.id, username: user.username, email: user.email } })
     } catch (error) {
+        console.error("[Register] Error:", error)
         if (error instanceof ZodError) {
             return NextResponse.json({ error: (error as any).errors }, { status: 400 })
         }
