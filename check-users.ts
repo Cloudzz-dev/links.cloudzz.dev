@@ -13,10 +13,10 @@ async function main() {
         include: { links: true }
     })
     console.log("Users found:", users.length)
-    users.forEach(u => {
+    users.forEach((u: { id: string; username: string; email: string; links: { title: string; url: string }[] }) => {
         console.log(`- ID: ${u.id}, Username: '${u.username}', Email: '${u.email}'`)
         console.log(`  Links: ${u.links.length}`)
-        u.links.forEach(l => console.log(`    - ${l.title} (${l.url})`))
+        u.links.forEach((l: { title: string; url: string }) => console.log(`    - ${l.title} (${l.url})`))
     })
 }
 
