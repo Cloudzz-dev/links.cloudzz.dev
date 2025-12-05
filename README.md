@@ -10,6 +10,11 @@
   [Live Demo](https://links.cloudzz.dev) · [Report Bug](https://github.com/Cloudzz-dev/links.cloudzz.dev/issues) · [Request Feature](https://github.com/Cloudzz-dev/links.cloudzz.dev/issues)
 </div>
 
+> [!WARNING]
+> **Vibe Coded** 🎵
+> 
+> This project is basically 99% vibe coded — it was made mostly to test out new AI models, but I thought it turned out quite nice so here it is!
+
 ---
 
 ## ✨ Features
@@ -29,7 +34,7 @@
 
 | Category | Technology |
 |----------|------------|
-| **Framework** | [Next.js 16](https://nextjs.org/) (App Router) |
+| **Framework** | [Next.js 16](https://nextjs.org/) (Turbopack) |
 | **Language** | [TypeScript](https://www.typescriptlang.org/) |
 | **Styling** | [Tailwind CSS v4](https://tailwindcss.com/) |
 | **UI Components** | [shadcn/ui](https://ui.shadcn.com/) |
