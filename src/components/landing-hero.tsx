@@ -25,30 +25,37 @@ export function LandingHero() {
             <div className="absolute bottom-0 right-0 w-[600px] h-[400px] bg-cyan-500/20 blur-[120px] rounded-full opacity-30 z-0" />
 
             {/* Navbar */}
-            <nav className="absolute top-0 w-full p-6 flex justify-between items-center z-10 max-w-7xl mx-auto">
-                <div className="flex items-center gap-3 font-bold text-xl tracking-tighter">
-                    <div className="h-10 w-10 bg-gradient-to-br from-primary to-primary/60 rounded-xl flex items-center justify-center text-white shadow-lg glow-sm">
-                        <Sparkles className="h-5 w-5" />
+            <nav className="absolute top-0 left-0 right-0 p-4 md:p-6 flex justify-between items-center z-20 max-w-7xl mx-auto">
+                <div className="flex items-center gap-2 md:gap-3 font-bold text-lg md:text-xl tracking-tighter">
+                    <div className="h-8 w-8 md:h-10 md:w-10 bg-gradient-to-br from-primary to-primary/60 rounded-xl flex items-center justify-center text-white shadow-lg glow-sm">
+                        <Sparkles className="h-4 w-4 md:h-5 md:w-5" />
                     </div>
                     <span className="gradient-text">Cloudzz Links</span>
                 </div>
-                <div className="flex gap-3">
+                <div className="flex gap-2 md:gap-3">
                     <Link href="/login">
-                        <Button variant="ghost" className="glass-button text-white hover:text-white">
+                        <Button variant="ghost" size="sm" className="glass-button text-white hover:text-white text-sm md:text-base px-3 md:px-4">
                             Login
                         </Button>
                     </Link>
                     <Link href="/register">
-                        <Button className="bg-white text-black hover:bg-gray-100 font-semibold shadow-lg">
-                            Sign Up Free
+                        <Button size="sm" className="bg-white text-black hover:bg-gray-100 font-semibold shadow-lg text-sm md:text-base px-3 md:px-4">
+                            Sign Up
                         </Button>
                     </Link>
                 </div>
             </nav>
 
             {/* Hero Content */}
-            <div className="relative z-10 text-center max-w-4xl px-4 space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-1000">
-                {/* Badge */}
+            <div className="relative z-10 text-center max-w-4xl px-4 space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 pt-20 md:pt-0">
+                {/* Headline */}
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none">
+                    <span className="gradient-text">One Link for</span>
+                    <br />
+                    <span className="text-white">Everything You Are.</span>
+                </h1>
+
+                {/* Badge - moved below headline */}
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm text-gray-300">
                     <span className="relative flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -57,13 +64,6 @@ export function LandingHero() {
                     <span className="font-medium">v2.0 is now live</span>
                     <span className="text-primary font-semibold">— New themes & features!</span>
                 </div>
-
-                {/* Headline */}
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none">
-                    <span className="gradient-text">One Link for</span>
-                    <br />
-                    <span className="text-white">Everything You Are.</span>
-                </h1>
 
                 {/* Subheadline */}
                 <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
