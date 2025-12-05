@@ -1,7 +1,7 @@
 # Cloudzz Links
 
 <div align="center">
-  <img src="public/preview.png" alt="Cloudzz Links Preview" width="800" />
+  <img src="public/previwe_landing.png" alt="Cloudzz Links Preview" width="800" />
   
   **One Link for Everything You Are.**
   
@@ -19,7 +19,7 @@
 - **🖼️ Custom Avatars & Banners** - Upload your own images with a personal media library
 - **📱 Fully Responsive** - Looks great on desktop, tablet, and mobile
 - **🔐 Secure Authentication** - Email/password auth with encrypted credentials
-- **⚡ Lightning Fast** - Built with Next.js 15 for optimal performance
+- **⚡ Lightning Fast** - Built with Next.js 16 for optimal performance
 - **🎯 Drag & Drop Links** - Reorder your links with intuitive drag-and-drop
 - **🌐 Custom Usernames** - Get your own `links.cloudzz.dev/username` URL
 
@@ -29,7 +29,7 @@
 
 | Category | Technology |
 |----------|------------|
-| **Framework** | [Next.js 15](https://nextjs.org/) (App Router) |
+| **Framework** | [Next.js 16](https://nextjs.org/) (App Router) |
 | **Language** | [TypeScript](https://www.typescriptlang.org/) |
 | **Styling** | [Tailwind CSS v4](https://tailwindcss.com/) |
 | **UI Components** | [shadcn/ui](https://ui.shadcn.com/) |
@@ -197,5 +197,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 <div align="center">
   <p>Built with ❤️ by Cloudzz</p>
-  <p>© 2024 Cloudzz Links. All rights reserved.</p>
 </div>
