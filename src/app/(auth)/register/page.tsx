@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, Suspense } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
@@ -27,7 +27,7 @@ const registerSchema = z.object({
     password: z.string().min(6, "Password must be at least 6 characters"),
 })
 
-export default function RegisterPage() {
+function RegisterForm() {
     const router = useRouter()
     const searchParams = useSearchParams()
     const [isLoading, setIsLoading] = useState(false)
@@ -166,3 +166,21 @@ export default function RegisterPage() {
         </Card>
     )
 }
+
+export default function RegisterPage() {
+    return (
+        <Suspense fallback={
+            <Card className="w-full glass-card border-white/10 shadow-2xl">
+                <CardHeader className="space-y-1 pb-6">
+                    <CardTitle className="text-3xl font-bold text-center gradient-text">Create Account</CardTitle>
+                    <CardDescription className="text-center text-gray-400">
+                        Loading...
+                    </CardDescription>
+                </CardHeader>
+            </Card>
+        }>
+            <RegisterForm />
+        </Suspense>
+    )
+}
+
