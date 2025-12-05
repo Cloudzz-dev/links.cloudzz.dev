@@ -1,0 +1,130 @@
+"use client"
+
+import { useState } from "react"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { z } from "zod"
+import { signIn } from "next-auth/react"
+import { useRouter } from "next/navigation"
+import { toast } from "sonner"
+import Link from "next/link"
+
+import { Button } from "@/components/ui/button"
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+
+const loginSchema = z.object({
+    email: z.string().email("Invalid email address"),
+    password: z.string().min(6, "Password must be at least 6 characters"),
+})
+
+export default function LoginPage() {
+    const router = useRouter()
+    const [isLoading, setIsLoading] = useState(false)
+
+    const form = useForm<z.infer<typeof loginSchema>>({
+        resolver: zodResolver(loginSchema),
+        defaultValues: {
+            email: "",
+            password: "",
+        },
+    })
+
+    async function onSubmit(values: z.infer<typeof loginSchema>) {
+        setIsLoading(true)
+        try {
+            const result = await signIn("credentials", {
+                email: values.email,
+                password: values.password,
+                redirect: false,
+            })
+
+            if (result?.error) {
+                toast.error("Invalid email or password")
+            } else {
+                toast.success("Logged in successfully")
+                router.push("/dashboard")
+                router.refresh()
+            }
+        } catch (error) {
+            toast.error("Something went wrong")
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
+    return (
+        <Card className="w-full glass-card border-white/10 shadow-2xl">
+            <CardHeader className="space-y-1 pb-6">
+                <CardTitle className="text-3xl font-bold text-center gradient-text">Welcome Back</CardTitle>
+                <CardDescription className="text-center text-gray-400">
+                    Enter your credentials to access your account
+                </CardDescription>
+            </CardHeader>
+            <CardContent>
+                <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+                        <FormField
+                            control={form.control}
+                            name="email"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel className="text-gray-300">Email</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            placeholder="email@example.com"
+                                            {...field}
+                                            className="h-12 bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all"
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="password"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel className="text-gray-300">Password</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            type="password"
+                                            placeholder="••••••••"
+                                            {...field}
+                                            className="h-12 bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all"
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <Button
+                            type="submit"
+                            className="w-full h-12 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white font-semibold shadow-lg transition-all duration-300"
+                            disabled={isLoading}
+                        >
+                            {isLoading ? "Logging in..." : "Login"}
+                        </Button>
+                    </form>
+                </Form>
+            </CardContent>
+            <CardFooter className="flex justify-center pt-2 pb-6">
+                <p className="text-sm text-gray-400">
+                    Don't have an account?{" "}
+                    <Link href="/register" className="text-primary font-semibold hover:underline">
+                        Create one free
+                    </Link>
+                </p>
+            </CardFooter>
+        </Card>
+    )
+}

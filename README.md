@@ -1,141 +1,36 @@
-# Cloudzz Links
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-A clean, minimal, customizable link-in-bio platform — your own self-hosted alternative to LinkTree.  
-Users can register, log in, and create a public page at:
+## Getting Started
 
-https://links.cloudzz.dev/
+First, run the development server:
 
-<username>
-
-
-Built with **Next.js**, **TailwindCSS**, **Prisma**, and **PostgreSQL**.
-
----
-
-## 🚀 Features
-
-- 🔐 **User Authentication** (Register, Login, Logout)  
-- 👤 **User Profiles** (avatar, bio, username, theme)  
-- 🔗 **Link Management** (add, edit, delete, reorder)  
-- 🎨 **Themes** (Minimal, Dark/Hacker, Cyberpunk, Apple Clean)  
-- 🌐 **Public Profile Pages**  
-- 📱 Fully responsive  
-- ⚡ Fast and deployment-ready on Vercel  
-
-### Optional / Stretch Features
-- 📊 Link click analytics  
-- 🧪 Admin panel  
-- 🧾 QR code for each profile  
-
----
-
-## 🧱 Tech Stack
-
-- **Frontend:** Next.js (App Router), TailwindCSS  
-- **Backend:** Next.js API Routes  
-- **Database:** PostgreSQL (Supabase/Neon)  
-- **ORM:** Prisma  
-- **Auth:** NextAuth / Auth.js  
-- **Components:** Shadcn UI  
-- **Icons:** Lucide / FontAwesome  
-
----
-
-## 📦 Project Structure
-
-/src
-/app
-/(public)
-[username]/page.tsx
-/(auth)
-login/page.tsx
-register/page.tsx
-/dashboard
-profile/page.tsx
-links/page.tsx
-/api
-/auth/*
-/links/*
-/components
-/ui
-LinkCard.tsx
-ProfileHeader.tsx
-ThemeSwitcher.tsx
-/lib
-auth.ts
-prisma.ts
-validators.ts
-/styles
-globals.css
-
-
----
-
-## 🗄️ Database Schema (Prisma)
-
-### **User**
-- `id` (string, cuid)  
-- `email` (string, unique)  
-- `passwordHash` (string)  
-- `username` (string, unique)  
-- `bio` (string, optional)  
-- `avatarUrl` (string, optional)  
-- `theme` (string, default: "minimal")  
-
-### **Link**
-- `id` (string, cuid)  
-- `userId` (relation)  
-- `title` (string)  
-- `url` (string)  
-- `order` (int)  
-
----
-
-## 🏁 Getting Started
-
-### 1. Clone the repo
 ```bash
-git clone https://github.com/yourusername/cloudzz-links
-cd cloudzz-links
-
-2. Install dependencies
-
-npm install
-
-3. Configure environment variables
-
-Create a .env file:
-
-DATABASE_URL=postgresql://...
-NEXTAUTH_SECRET=your-secret
-NEXTAUTH_URL=http://localhost:3000
-
-4. Initialize Prisma
-
-npx prisma generate
-npx prisma db push
-
-5. Run the dev server
-
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-Your app runs at:
-http://localhost:3000
-📤 Deployment
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Deploy easily to Vercel:
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-    Push repo to GitHub
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-    Create Vercel project
+## Learn More
 
-    Add environment variables
+To learn more about Next.js, take a look at the following resources:
 
-    Connect PostgreSQL
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-    Deploy
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-📝 License
+## Deploy on Vercel
 
-MIT — free to use, modify, and self-host.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
