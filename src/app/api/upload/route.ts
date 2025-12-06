@@ -24,8 +24,8 @@ export async function POST(req: Request) {
         const safeName = file.name.replace(/[^a-zA-Z0-9.-]/g, "_")
         const filename = Date.now() + "_" + safeName
 
-        // Ensure uploads directory exists
-        const uploadDir = path.join(process.cwd(), "public/uploads", session.user.id)
+        // Save to PRIVATE uploads directory (outside public/)
+        const uploadDir = path.join(process.cwd(), "uploads", session.user.id)
         try {
             await mkdir(uploadDir, { recursive: true })
         } catch (e) {
@@ -35,9 +35,11 @@ export async function POST(req: Request) {
         await writeFile(path.join(uploadDir, filename), buffer)
         console.log("File saved to:", path.join(uploadDir, filename))
 
-        return NextResponse.json({ url: `/uploads/${session.user.id}/${filename}` })
+        // Return URL pointing to the secure image API route
+        return NextResponse.json({ url: `/api/images/${session.user.id}/${filename}` })
     } catch (error) {
         console.error("Error uploading file:", error)
         return NextResponse.json({ error: "Error uploading file: " + (error as Error).message }, { status: 500 })
     }
 }
+

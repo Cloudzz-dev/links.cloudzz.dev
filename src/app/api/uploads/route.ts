@@ -10,14 +10,15 @@ export async function GET(req: Request) {
     }
 
     try {
-        const uploadDir = path.join(process.cwd(), "public/uploads", session.user.id)
+        // Read from PRIVATE uploads directory (outside public/)
+        const uploadDir = path.join(process.cwd(), "uploads", session.user.id)
 
         try {
             const files = await readdir(uploadDir)
-            // Filter for image files and map to public URLs
+            // Filter for image files and map to secure API URLs
             const images = files
                 .filter(file => /\.(jpg|jpeg|png|gif|webp)$/i.test(file))
-                .map(file => `/uploads/${session.user?.id}/${file}`)
+                .map(file => `/api/images/${session.user?.id}/${file}`)
                 // Sort by timestamp (assuming filename starts with timestamp)
                 .sort((a, b) => {
                     const timeA = parseInt(a.split('/').pop()?.split('_')[0] || "0")

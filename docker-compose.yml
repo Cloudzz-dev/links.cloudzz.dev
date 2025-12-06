@@ -1,7 +1,23 @@
 services:
+  app:
+    build: .
+    container_name: cloudzz-links-app
+    restart: always
+    ports:
+      - "3535:3535"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - postgres
+
   postgres:
     image: postgres:15-alpine
     container_name: cloudzz-links-db
+    restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
@@ -13,3 +29,5 @@ services:
 
 volumes:
   postgres_data:
+
+
