@@ -11,7 +11,7 @@
 </div>
 
 > [!WARNING]
-> **Vibe Coded**
+> **Vibe Coded** 
 > 
 > This project is basically 99% vibe coded — it was made mostly to test out new AI models, but I thought it turned out quite nice so here it is!
 
